@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{{page_user.user.first_name}} {{page_user.user.last_name}}
+{% endblock %}
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'profile.css' %}" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
+<br/>
+<div class="container">
+<h3 class="mb-4 border-bottom pb-1">
+  Profile Page
+</h3>
+</div>
+<br/>
+<div class="container">
+  <div class="justify">
+    <div class="profile-card">
+      <div class="card-header">
+        <div class="pic">
+          {% if page_user.profile_pic %}
+          <img src="{{ page_user.profile_pic.url }}">
+          {% else %}
+          <img src="{% static 'media/images/placeholders/profile-placeholder.png' %}">
+          {% endif %}
+        </div>
+        <div class="name">
+          {{page_user.user.first_name}} {{page_user.user.last_name}}
+        </div>
+        <div class="desc">
+          {{ page_user.bio}}
+        </div>
+        <div class="sm">
+          {% if page_user.facebook_url %}
+          <a href="{{ page_user.facebook_url}}" class="fab fa-facebook-f"></a>
+          {% endif %}
+          {% if page_user.twitter_url %}
+          <a href="{{ page_user.twitter_url}}" class="fab fa-twitter"></a>
+          {% endif %}
+          {% if page_user.instagram_url %}
+          <a href="{{ page_user.instagram_url}}" class="fab fa-instagram"></a>
+          {% endif %}
+        </div>
+        {% if page_user.website_url %}
+        <a href="{{page_user.website_url}}" class="contact-btn">Visit My Website</a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+
+
+  <br>
+  <hr>
+</div>
+
+
+{% endblock %}

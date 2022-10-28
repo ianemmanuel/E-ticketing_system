@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		My Dashboard
+{% endblock %}
+{% block content %}
+<main class="container my-4">
+  <link rel="stylesheet" type="text/css" href="{% static 'cards.css' %}" />
+	<h3 class="my-4 border-bottom pb-1">Dashboard</h3>
+    <div class="row">
+      {% if request.user.is_staff%}
+      <div class="col-md-3 mb-4">
+        <div class="wrapper">
+          <div class="card">
+            <img src="{% static 'media/images/dashboard/festival7.jpg' %}">
+            <div class="info">
+              <h1>My Events</h1>
+              <!-- <p></p> -->
+              <a href="{% url 'my_events' %}" class="btn"> my events <i class="bi bi-bag-check-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="wrapper">
+          <div class="card">
+            <img src="{% static 'media/images/dashboard/upload3.jpg' %}">
+            <div class="info">
+              <h1>Upload Events</h1>
+              <!-- <p></p> -->
+              <a href="{% url 'add_post' %}" class="btn">upload <i class="bi bi-cloud-arrow-up-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% if user.profile.id %}
+      <div class="col-md-3 mb-4">
+        <div class="wrapper">
+          <div class="card">
+            <img src="{% static 'media/images/dashboard/avatar2.png' %}">
+            <div class="info">
+              <h1>My Profile</h1>
+              <!-- <p></p> -->
+              <a href="{% url 'show_profile_page' user.profile.id %}" class="btn">profile <i class="bi bi-person-bounding-box"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="wrapper">
+          <div class="card">
+            <img src="{% static 'media/images/dashboard/edit.jpg' %}">
+            <div class="info">
+              <h1>Edit Profile</h1>
+              <!-- <p></p> -->
+              <a href="{% url 'edit_profile_page' user.profile.id %}" class="btn"> Edit <i class="bi bi-pen-fill"></i> </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div class="col-md-3 mb-4">
+        <div class="wrapper">
+          <div class="card">
+            <img src="{% static 'media/images/dashboard/add.jpg' %}">
+            <div class="info">
+              <h1>Create Profile</h1>
+              <!-- <p></p> -->
+              <a href="{% url 'create_profile_page' %}" class="btn"> Create Profile <i class="bi bi-person-bounding-box"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      <div class="col-md-3 mb-4">
+        <div class="wrapper">
+          <div class="card">
+            <img src="{% static 'media/images/dashboard/wishlist2.png' %}">
+            <div class="info">
+              <h1>My Wishlist</h1>
+              <!-- <p></p> -->
+              <a href="{% url 'my_wishlist' %}" class="btn">Wishlist <i class="bi bi-heart-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4">
+        <div class="wrapper">
+          <div class="card">
+            <img src="{% static 'media/images/dashboard/reviews1.png' %}">
+            <div class="info">
+              <h1>My Reviews</h1>
+              <!-- <p></p> -->
+              <a href="{% url 'my-reviews' %}" class="btn">Reviews <i class="bi bi-star-fill"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+</main>
+{% endblock %}

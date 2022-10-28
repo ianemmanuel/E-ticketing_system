@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		Login
+{% endblock %}
+
+{% block content %}
+<br/>
+<div class="container">
+  <h3 class="mb-4 border-bottom pb-1">
+    Login
+  </h3>
+</div>
+
+<br/><br/>
+<div class="container">
+  <div class="container">
+    <div class="form-group">
+      <form method="POST" >
+
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="exampleInputEmail1" class="form-label">Username</label>
+          <input type="text" class="form-control" name="username">
+
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Password</label>
+          <input type="password" class="form-control" name="password">
+        </div>
+        <br/>
+        <button class="btn btn-success">Login</button>
+        <br/><br/>
+        <small class="form-text">Dont have an account? Sign up <a href="{% url 'register' %}">here</a>.</small>
+
+
+      </form>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

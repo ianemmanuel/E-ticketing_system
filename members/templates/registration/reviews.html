@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		My Reviews
+{% endblock %}
+{% block content %}
+<main class="container my-4">
+	<!-- Featured Events -->
+	<h3 class="my-4 border-bottom pb-1">My Reviews</h3>
+	<div class="row">
+
+		<div class="col-md-12">
+			<div class="table-responsive">
+				<table class="table-bordered table">
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Image</th>
+							<th>Price</th>
+              <th>My Reviews</th>
+              <th>My Ratings</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for review in reviews %}
+						<tr>
+							<td><a href="/event/{{review.event.slug}}/{{review.event.id}}">{{review.event.title}}</a></td>
+							<td>
+								<img width="100" src="/media/{{review.event.eventattribute_set.first.image}}" alt="{{review.event.title}}">
+							</td>
+							<td>{{review.event.eventattribute_set.first.price}}</td>
+              <td>{{review.review_text}}</td>
+              <td>{{review.review_rating}}</td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</main>
+{% endblock %}
