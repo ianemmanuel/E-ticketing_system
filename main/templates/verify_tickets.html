@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		Verify Tickets -{{event.title}}
+{% endblock %}
+
+
+
+{% block content %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'prompt.css' %}" />
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://use.fontawesome.com/5dd67b02c0.js"></script>
+<div class="container">
+  <h3 class="my-4 border-bottom pb-1">Verify</h3>
+
+  <!-- <h1>{{otp}}</h1> -->
+  {% if message1 %}
+  <!-- <div class="alert show hide">
+    <span class="fas fa-exclamation-circle"></span>
+    <span class="msg">{{message1}}</span>
+    <span class="close-btn">
+      <span class="fas fa-times"></span>
+    </span> -->
+    <div class="alert-box hide">
+      {{message1}}
+      <span class="close-alert">&times</span>
+    </div>
+
+  </div>
+  {% endif %}
+
+  {% if message2%}
+  <div class="alert show hide">
+    <span class="fas fa-exclamation-circle"></span>
+    <span class="msg">{{message2}}</span>
+    <span class="close-btn">
+      <span class="fas fa-times"></span>
+    </span>
+  </div>
+  {% endif%}
+
+
+    <form action="{% url 'verify_tickets' event.id %}" method="POST">
+      {% csrf_token %}
+      <table align="center">
+        <tr>
+          <th><label for="exampleInputPassword1" class="form-label">{{event.title}}</label></th>
+        </tr>
+        <tr>
+          <th><img src="/media/{{event.eventattribute_set.first.image}}" width="500px"></th>
+        </tr>
+        <tr>
+          <th><br><label for="exampleInputPassword1" class="form-label">Ticket No.</label></th>
+        </tr>
+        <tr>
+          <th><input type="password" class="form-control" id="exampleInputPassword1" required name="otp" placeholder="Input the Ticket Number" required></th>
+        </tr>
+        <tr>
+          <th><br><button id="manuel" type="submit" class="btn btn-primary">Check</button></th>
+        </tr>
+
+      </table>
+
+    </form>
+
+
+</div>
+<script>
+  // var button = document.getElementById("manuel");
+  // button.onclick = function(){
+  //   alert("{{message}}") };
+  $('button').click(function(){
+    $('.alert').removeClass("hide");
+    $('.alert').addClass("show");
+    $('.alert').addClass("showAlert");
+    setTimeout(function(){
+      $('.alert').addClass("hide");
+      $('.alert').removeClass("show");
+    },7000);
+  });
+  $('.close-btn').click(function(){
+    $('.alert-box').addClass("hide");
+    $('.alert-box').removeClass("show");
+  });
+
+  // success message
+  $('button').click(function(){
+    $('.alert-box').removeClass("hide");
+    $('.alert-box').addClass("show");
+    $('.alert-box').addClass("showAlert");
+    setTimeout(function(){
+      $('.alert-box').addClass("hide");
+      $('.alert-box').removeClass("show");
+    },5000);
+  });
+  $('.close-btn').click(function(){
+    $('.alert-box').addClass("hide");
+    $('.alert-box').removeClass("show");
+  });
+
+</script>
+
+{% endblock %}
+
+

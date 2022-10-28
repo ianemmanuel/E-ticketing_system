@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		Categories
+{% endblock %}
+{% block content %}
+<main class="container my-4">
+	<link rel="stylesheet" type="text/css" href="{% static 'cards.css' %}" />
+	<!-- Featured Products -->
+	<h3 class="my-4 border-bottom pb-1">Categories</h3>
+	<div class="row">
+		{% if data %}
+			{% for cat in data %}
+			<!-- <div class="col-md-3 mb-4">
+				<div class="card shadow">
+				<a href="/category-event-list/{{cat.id}}"><img src="/media/{{cat.image}}" class="card-img-top" alt="{{cat.title}}" /></a>
+				<div class="card-body">
+					<h6 class="card-text"><a href="#">{{cat.title}}</a></h6>
+				</div>
+				</div>
+			</div> -->
+		<div class="col-md-3 mb-4">
+			<div class="wrapper">
+				<div class="card">
+					<img src="/media/{{cat.image}}"  alt="{{cat.title}}" />
+					<div class="info">
+						<h1>{{cat.title}}</h1>
+						{% if cat.description %}
+						<p>{{cat.description}}</p>
+						{% endif %}
+						<a href="/category-event-list/{{cat.id}}" class="btn"> Explore <i class="bi bi-binoculars-fill"></i> </a>
+					</div>
+				</div>
+			</div>
+		</div>
+			{% endfor %}
+		{% endif %}
+	</div>
+</main>
+{% endblock %}

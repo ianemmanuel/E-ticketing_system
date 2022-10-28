@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		Tickets
+{% endblock %}
+{% block content %}
+
+<main class="container my-4" id="cartList">
+
+    <h3 class="my-4 border-bottom pb-1">Tickets ({{totalitems}})</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Event</th>
+
+                <th>Download Ticket</th>
+            </tr>
+        </thead>
+        <tbody >
+            {% for event_id,item in cart_data.items %}
+            <tr>
+                <td>
+                    <img src="/media/{{item.image}}" width="50" />
+                    <p><a href="/event/{{item.title|slugify}}/{{event_id}}">{{item.title}}</a></p>
+                </td>
+                <td>
+
+                    <!-- <a type="button" href="{% url 'ticket-view' event_id %}" class="btn btn-success" id="btn"><i class="bi bi-download"></i> Download Ticket</a> -->
+                    <a id="myDIV" href="{% url 'ticket-view' event_id %}"><button id="btn" class="btn btn-success"><i class="bi bi-download"></i> Download</button></a>
+
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+    <a href="{% url 'home2'%}" class="btn btn-primary" id="home1">Home</a>
+    <script>
+        var button = document.getElementById("btn");
+        button.onclick = function(){
+        button.setAttribute('disabled','disabled');
+        };
+
+        var home= document.getElementById("home1");
+        home.onclick = function(){
+          alert("Make sure you have downloaded all your tickets. Your tickets will get lost once you leave this page ") };
+
+    </script>
+    <!-- <script type="text/javascript" src="{% static 'ticket.js' %}"></script> -->
+</main>
+
+{% endblock %}
+

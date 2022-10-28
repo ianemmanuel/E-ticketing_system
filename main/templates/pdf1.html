@@ -1,0 +1,61 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <title>{{event.title}}</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'pdf1.css' %}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'fontawesome-free/css/all.min.css' %}" />
+    <!-- Bootstrap 4 CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bs4/bootstrap.min.css' %}" />
+    <!-- Main Jquery -->
+    <script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+    <!-- Bootstrap 4 JS -->
+    <script type="text/javascript" src="{% static 'bs4/bootstrap.min.js' %}"></script>
+    <!-- font awsome css -->
+    <script src="https://use.fontawesome.com/5dd67b02c0.js"></script>
+    <!-- CustomJs -->
+
+    <script type="text/javascript" src="{% static 'custom.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'search.css' %}" />
+
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class='text-center'>
+        <h1><i>{{event.title}}</i></h1>
+      </div>
+      <hr>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <img src="{{event.eventattribute_set.first.image.path}}" height="300px"/>
+          </div>
+          <div class="col-md-8">
+            <h2>
+              {{event.detail|safe}}
+            </h2>
+          </div>
+        </div>
+
+        <br/>
+        <h1>Price: USD.{{event.eventattribute_set.first.price}}</h1>
+        <br/>
+        {% if event.qr_code %}
+        <img src="{{event.qr_code.path}}"/>
+        {% endif %}
+      </div>
+    </div>
+
+  </body>
+</html>

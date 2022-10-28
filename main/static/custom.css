@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,800;1,200;1,500&display=swap');
+
+body{
+
+  background-size: cover;
+	overflow-x: hidden;
+	font-family: 'Poppins', sans-serif;
+
+
+}
+
+.focused{
+	outline: 0 !important;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%) !important;
+}
+
+.errorlist li{
+	color: red;
+}
+
+.inner{
+	overflow: hidden;
+
+}
+
+.inner img{
+	transition: all 1.5s ease;
+}
+.inner:hover img{
+	transform: scale(1.5);
+}

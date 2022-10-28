@@ -1,0 +1,9 @@
+body{
+  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(53, 54, 53);
+}

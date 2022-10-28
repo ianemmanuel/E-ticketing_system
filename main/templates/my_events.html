@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+	my events
+{% endblock %}
+{% block content %}
+<main class="container my-4" id="cartList">
+
+
+
+
+  <h3 class="my-4 border-bottom pb-1">My Events</h3>
+
+  <table class="table table-bordered">
+
+      <thead>
+          <tr>
+              <th>Event</th>
+
+              <th>Verify Ticket</th>
+          </tr>
+      </thead>
+      <tbody>
+
+        {% for event in object_list %}
+          {% if user.id == event.author.id %}
+            <tr>
+                <td>
+                  <a href="/event/{{event.slug}}/{{event.id}}"><img src="/media/{{event.eventattribute_set.first.image}}"  alt="{{event.title}}" height="100px"></a>
+                  <p><a href="/event/{{event.slug}}/{{event.id}}"><h5>{{event.title}}</h5></a></p>
+                </td>
+                <td>
+
+                    <a href="{% url 'verify_tickets' event.id %}" class="btn btn-primary"><i class="bi bi-person-check"></i>  Verify Tickets</a>
+
+                </td>
+          {% endif %}
+
+          </tr>
+          {% endfor %}
+      </tbody>
+
+  </table>
+
+</main>
+
+{% endblock %}
+

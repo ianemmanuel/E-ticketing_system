@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+		Upload Event
+{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<br/>
+<div class="container">
+  <h3 class="mb-4 border-bottom pb-1">
+    Upload Event
+  </h3>
+  <h6>
+    Kindly upload a valid Police clearance form since it is mandatory.
+    Additionally, any form of fraud will lead to immediate revocation of your organizer status,
+    deletion of your event and your account from the website and possible
+    imprisonment/imposition of heafty fines by the authorities.
+  </h6>
+</div>
+
+  <br/><br/>
+  <div class="container">
+    <div class="container">
+      <div class="form-group">
+        <form method="POST">
+
+          {% csrf_token %}
+          {{ form.media }}
+          {{ form.as_p }}
+          <button class="btn btn-primary">Next <i class="bi bi-chevron-double-right"></i></button>
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    var name= "{{ user.id }}"
+    document.getElementById("elder").value = name;
+  </script>
+{% else %}
+  <br/><br/>
+  <div class="container">
+    <button class="btn btn-success" href="{% url 'login' %}"> Login </button>
+  </div>
+
+{% endif %}
+
+{% endblock %}
